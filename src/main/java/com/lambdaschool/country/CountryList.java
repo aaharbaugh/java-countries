@@ -35,4 +35,19 @@ public class CountryList
         countryList.add(new Country("Italy",59216525,294140,48));
         countryList.add(new Country("South Africa",58065097,1213090,27));
     }
+
+    public ArrayList<Country> findCountries(CheckCountry tester)
+    {
+        ArrayList<Country> tempCountryList = new ArrayList<>();
+
+        for (Country c: countryList)
+        {
+            if(tester.test(c))
+            {
+                tempCountryList.add(c);
+            }
+        }
+
+        return tempCountryList;
+    }
 }

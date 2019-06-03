@@ -21,4 +21,16 @@ public class CountryController {
         CountryApplication.ourCountryList.countryList.sort((c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()));
         return new ResponseEntity<>(CountryApplication.ourCountryList.countryList, HttpStatus.OK);
     }
+
+    //localhost/data/countries/s
+    @GetMapping(value = "countries/{letter}",
+                produces = {"application/json"})
+    public ResponseEntity<?> getCountries(
+            @PathVariable
+                    char letter)
+    {
+        ArrayList<Country> returnCountries = CountryApplication.ourCountryList.
+                findCountries(c -> c.getName().toUpperCase().charAt(0) == Character.toUpperCase(letter));
+        return new ResponseEntity<>(returnCountries, HttpStatus.OK);
+    }
 }
